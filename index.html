@@ -22,6 +22,15 @@
         debug_mode: true,
         test_event_code: 'TEST36208'
       };
+      
+      // Send test PageView event on load
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          sendTikTokTestEvent('PageView', { 
+            email: 'test@example.com' 
+          });
+        }, 1000);
+      });
     }(window, document, 'ttq');
     </script>
     <!-- TikTok Pixel Code End -->
@@ -364,6 +373,37 @@
     <script>
       const OFFER_URL = 'https://t.afftrackr.com/?lnwk=pOVVvgvePYRZrQ6dD7Qn7LuqASTsCEyZvQJDRoz7h5U%3D&s1=';
 
+      // Send server-side test event to TikTok
+      function sendTikTokTestEvent(event_name, user_data = {}) {
+        const payload = {
+          event_source: 'web',
+          event_source_id: 'D76NOIBC77UFEGB3A0G0',
+          test_event_code: 'TEST36208',
+          data: [{
+            event_name: event_name,
+            event_time: Math.floor(Date.now() / 1000),
+            user: {
+              page_url: window.location.href,
+              page_domain: window.location.hostname,
+              ...user_data
+            }
+          }]
+        };
+        
+        fetch('https://business-api.tiktok.com/open_api/v1.3/event/track/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Token': 'YOUR_ACCESS_TOKEN_HERE' // Replace with your actual token
+          },
+          body: JSON.stringify(payload)
+        }).then(r => r.json()).then(data => {
+          console.log('TikTok test event sent:', data);
+        }).catch(e => {
+          console.log('TikTok event error (expected if no token):', e);
+        });
+      }
+
       // Handle location selection
       function handleLocationSelect(location) {
         if (location === 'Non-UK') {
@@ -375,6 +415,9 @@
         if (typeof ttq !== 'undefined' && ttq.track) {
           ttq.track('SubmitForm');
         }
+        
+        // Send server-side test event
+        sendTikTokTestEvent('SubmitForm', { email: 'test@example.com' });
 
         // Hide qualifier, show main lander
         document.getElementById('qualifierPage').classList.add('hidden');
@@ -438,6 +481,12 @@
           ttq.track('ClickButton');
           ttq.track('CompleteRegistration');
         }
+        
+        // Send server-side test event
+        sendTikTokTestEvent('CompleteRegistration', { 
+          email: 'test@example.com',
+          phone: '+441234567890'
+        });
         
         // Instant redirect
         window.location.href = OFFER_URL;
