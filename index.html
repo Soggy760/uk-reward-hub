@@ -358,6 +358,16 @@
     <script>
       const OFFER_URL = 'https://t.afftrackr.com/?lnwk=pOVVvgvePYRZrQ6dD7Qn7LuqASTsCEyZvQJDRoz7h5U%3D&s1=';
 
+      // Safe TikTok tracking function
+      function tiktokTrack(eventName, params) {
+        if (typeof ttq !== 'undefined' && ttq.track) {
+          ttq.track(eventName, params);
+          console.log('TikTok event fired:', eventName, params);
+        } else {
+          console.log('TikTok pixel not ready yet');
+        }
+      }
+
       // Handle location selection
       function handleLocationSelect(location) {
         if (location === 'Non-UK') {
@@ -366,12 +376,10 @@
         }
 
         // Fire TikTok pixel - CompleteRegistration when user qualifies (UK resident)
-        if (typeof ttq !== 'undefined' && ttq.track) {
-          ttq.track('CompleteRegistration', {
-            value: 750,
-            currency: 'GBP'
-          });
-        }
+        tiktokTrack('CompleteRegistration', {
+          value: 750,
+          currency: 'GBP'
+        });
 
         // Hide qualifier, show main lander
         document.getElementById('qualifierPage').classList.add('hidden');
@@ -431,19 +439,19 @@
 
       function handleClaim() {
         // Fire TikTok pixel - ClickButton and CompleteRegistration events
-        if (typeof ttq !== 'undefined' && ttq.track) {
-          ttq.track('ClickButton', {
-            value: 750,
-            currency: 'GBP'
-          });
-          ttq.track('CompleteRegistration', {
-            value: 750,
-            currency: 'GBP'
-          });
-        }
+        tiktokTrack('ClickButton', {
+          value: 750,
+          currency: 'GBP'
+        });
+        tiktokTrack('CompleteRegistration', {
+          value: 750,
+          currency: 'GBP'
+        });
         
-        // Instant redirect
-        window.location.href = OFFER_URL;
+        // Small delay to allow pixel to fire before redirect
+        setTimeout(function() {
+          window.location.href = OFFER_URL;
+        }, 300);
       }
     </script>
   </body>
