@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="-1" />
     <meta name="turbo-visit-control" content="reload" />
-    <title>Special Offer - Revolut</title>
+    <title>Special Offer - Zelle</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <!-- TikTok Pixel Code Start -->
     <script>
@@ -290,17 +290,17 @@
         <p class="qualifier-intro">Answer this question to continue</p>
         
         <h1 class="qualifier-headline">
-          Are you located in the UK?
+          Are you in the USA?
         </h1>
 
         <div class="location-options">
-          <button class="location-btn" onclick="handleLocationSelect('UK')">
-            <span class="location-icon">🇬🇧</span>
-            <span>Yes, I'm from the UK</span>
+          <button class="location-btn" onclick="handleLocationSelect('USA')">
+            <span class="location-icon">🇺🇸</span>
+            <span>Yes, I'm from the USA</span>
           </button>
-          <button class="location-btn" onclick="handleLocationSelect('Non-UK')">
+          <button class="location-btn" onclick="handleLocationSelect('Non-USA')">
             <span class="location-icon">🌍</span>
-            <span>No, I'm not from the UK</span>
+            <span>No, I'm not from the USA</span>
           </button>
         </div>
       </div>
@@ -310,7 +310,7 @@
         <div class="badge">💰 Special Offer</div>
         
         <h1 class="headline">
-          Get <span class="money-highlight">£750</span> On Revolut!
+          Get <span class="money-highlight">$750</span> On Zelle!
         </h1>
 
         <div class="timer-box">
@@ -329,14 +329,14 @@
           </div>
           <div class="trust-item">
             <span class="checkmark">✓</span>
-            <span>UK Only</span>
+            <span>USA Only</span>
           </div>
         </div>
 
         <div class="steps-simple">
           <div><strong>1.</strong> Enter your email</div>
           <div><strong>2.</strong> Complete quick offers</div>
-          <div><strong>3.</strong> Earn £750 for each offer completed</div>
+          <div><strong>3.</strong> Earn $100 for each offer completed</div>
         </div>
 
         <button class="btn-primary" onclick="handleClaim()">
@@ -344,7 +344,7 @@
         </button>
 
         <p class="disclaimer">
-          By entering, you agree to complete promotional offers. No purchase necessary. 18+ UK residents only.
+          By entering, you agree to complete promotional offers. No purchase necessary. 18+ USA residents only.
         </p>
       </div>
     </div>
@@ -354,12 +354,12 @@
       <a href="#" onclick="return false;">Terms</a> | 
       <a href="#" onclick="return false;">Rules</a>
       <br><br>
-      © 2026 Revolut Rewards. All rights reserved.
+      © 2026 Zelle Rewards. All rights reserved.
     </footer>
 
     <script>
       /* Cache bust: v2 1775079723 */
-      const OFFER_URL = 'https://t.afftrackr.com/?lnwk=pOVVvgvePYRZrQ6dD7Qn7LuqASTsCEyZvQJDRoz7h5U%3D&s1=';
+      const OFFER_URL = 'https://t.afftrackr.com/?es4v=X8xpaARu5vx5pVwBzmfiSkd5q%2BwjgpkkvQJDRoz7h5U%3D&s1=';
 
       // Safe TikTok tracking function
       function tiktokTrack(eventName, params) {
@@ -373,15 +373,15 @@
 
       // Handle location selection
       function handleLocationSelect(location) {
-        if (location === 'Non-UK') {
-          alert('Sorry, this offer is only available to UK residents.');
+        if (location === 'Non-USA') {
+          alert('Sorry, this offer is only available to USA residents.');
           return;
         }
 
-        // Fire TikTok pixel - CompleteRegistration when user qualifies (UK resident)
+        // Fire TikTok pixel - CompleteRegistration when user qualifies (USA resident)
         tiktokTrack('CompleteRegistration', {
           value: 750,
-          currency: 'GBP'
+          currency: 'USD'
         });
 
         // Hide qualifier, show main lander
@@ -444,11 +444,11 @@
         // Fire TikTok pixel - ClickButton and CompleteRegistration events
         tiktokTrack('ClickButton', {
           value: 750,
-          currency: 'GBP'
+          currency: 'USD'
         });
         tiktokTrack('CompleteRegistration', {
           value: 750,
-          currency: 'GBP'
+          currency: 'USD'
         });
         
         // Small delay to allow pixel to fire before redirect
