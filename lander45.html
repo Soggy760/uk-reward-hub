@@ -3,8 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta name="turbo-visit-control" content="reload" />
     <title>Special Offer - Revolut</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <!-- TikTok Pixel Code Start -->
+    <script>
+      /* Cache bust: v2 1775079723 */
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.load('D76NOIBC77UFEGB3A0G0');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
       
@@ -264,17 +280,6 @@
         .qualifier-headline { font-size: 24px; }
       }
     </style>
-    <!-- TikTok Pixel Code Start -->
-    <script>
-    !function (w, d, t) {
-      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-      ttq.load('D76NOIBC77UFEGB3A0G0');
-      ttq.page();
-    }(window, document, 'ttq');
-    </script>
-    <!-- TikTok Pixel Code End -->
   </head>
   <body>
     <div class="container">
@@ -305,7 +310,7 @@
         <div class="badge">💰 Special Offer</div>
         
         <h1 class="headline">
-          Get <span class="money-highlight">£500</span> On Revolut!
+          Get <span class="money-highlight">£750</span> On Revolut!
         </h1>
 
         <div class="timer-box">
@@ -331,7 +336,7 @@
         <div class="steps-simple">
           <div><strong>1.</strong> Enter your email</div>
           <div><strong>2.</strong> Complete quick offers</div>
-          <div><strong>3.</strong> Earn £100 for each offer completed</div>
+          <div><strong>3.</strong> Earn £750 for each offer completed</div>
         </div>
 
         <button class="btn-primary" onclick="handleClaim()">
@@ -353,7 +358,8 @@
     </footer>
 
     <script>
-      const OFFER_URL = 'https://t.afftrackr.com/?lnwk=pOVVvgvePYRZrQ6dD7Qn7LuqASTsCEyZvQJDRoz7h5U%3D&s1=&no=no&no=no';
+      /* Cache bust: v2 1775079723 */
+      const OFFER_URL = 'https://t.afftrackr.com/?lnwk=pOVVvgvePYRZrQ6dD7Qn7LuqASTsCEyZvQJDRoz7h5U%3D&s1=';
 
       // Safe TikTok tracking function
       function tiktokTrack(eventName, params) {
@@ -450,12 +456,6 @@
           window.location.href = OFFER_URL;
         }, 300);
       }
-
-      // Prevent inspect element
-      document.onkeydown = e => {
-        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key))) e.preventDefault();
-      };
-      document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
   </body>
 </html>
