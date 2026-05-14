@@ -359,10 +359,10 @@
 
     <script>
       /* Cache bust: v2 1775079723 */
-      const OFFER_BASE = 'https://t.afftrackr.com/?lnwk=pOVVvgvePYRZrQ6dD7Qn7LuqASTsCEyZvQJDRoz7h5U%3D&s1=';
-      // Grab Clickflare click ID from URL (Clickflare appends ?clickid=XXX to landing page)
+      // Clickflare click ID — appended to lander URL by Clickflare as ?clickid=XXX
       const CF_CLICK_ID = new URLSearchParams(window.location.search).get('clickid') || '';
-      const OFFER_URL = OFFER_BASE + encodeURIComponent(CF_CLICK_ID);
+      // CTA goes to Clickflare Click URL — Clickflare redirects to afftrackr with click ID
+      const OFFER_URL = 'https://trafiqly.com/cf/click' + (CF_CLICK_ID ? '?clickid=' + encodeURIComponent(CF_CLICK_ID) : '');
 
       // Safe TikTok tracking function
       function tiktokTrack(eventName, params) {
