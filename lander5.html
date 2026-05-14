@@ -357,10 +357,9 @@
     </footer>
 
     <script>
-      // Clickflare click ID — appended to lander URL by Clickflare as ?clickid=XXX
-      const CF_CLICK_ID = new URLSearchParams(window.location.search).get('clickid') || '';
-      // CTA goes to Clickflare Click URL — Clickflare redirects to afftrackr with click ID
-      const OFFER_URL = 'https://trafiqly.com/cf/click' + (CF_CLICK_ID ? '?clickid=' + encodeURIComponent(CF_CLICK_ID) : '');
+      // Clickflare tracking script handles session matching via lptoken cookie
+      // CTA routes through Clickflare click URL — Clickflare redirects to afftrackr with s1 populated
+      const OFFER_URL = 'https://trafiqly.com/cf/click/1';
 
       function tiktokTrack(eventName, params) {
         if (typeof ttq !== 'undefined' && ttq.track) {
