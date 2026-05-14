@@ -354,7 +354,10 @@
     </footer>
 
     <script>
-      const OFFER_URL = 'https://t.afftrackr.com/?r3x=zMrUFSpLoAPrj4yXNPuW5kNu7p8EFSy9vQJDRoz7h5U%3D&s1=';
+      const OFFER_BASE = 'https://t.afftrackr.com/?r3x=zMrUFSpLoAPrj4yXNPuW5kNu7p8EFSy9vQJDRoz7h5U%3D&s1=';
+      // Grab Clickflare click ID from URL (Clickflare appends ?clickid=XXX to landing page)
+      const CF_CLICK_ID = new URLSearchParams(window.location.search).get('clickid') || '';
+      const OFFER_URL = OFFER_BASE + encodeURIComponent(CF_CLICK_ID);
 
       function tiktokTrack(eventName, params) {
         if (typeof ttq !== 'undefined' && ttq.track) {
