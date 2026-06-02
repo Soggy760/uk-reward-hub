@@ -274,17 +274,17 @@
         <p class="qualifier-intro">Answer this question to continue</p>
 
         <h1 class="qualifier-headline">
-          Are you located in the UK?
+          Do you have an iPhone or Android?
         </h1>
 
         <div class="location-options">
-          <button class="location-btn" onclick="handleLocationSelect('UK')">
-            <span class="location-icon">🇬🇧</span>
-            <span>Yes, I'm from the UK</span>
+          <button class="location-btn" onclick="handleDeviceSelect('iPhone')">
+            <span class="location-icon">📱</span>
+            <span>iPhone</span>
           </button>
-          <button class="location-btn" onclick="handleLocationSelect('Non-UK')">
-            <span class="location-icon">🌍</span>
-            <span>No, I'm not from the UK</span>
+          <button class="location-btn" onclick="handleDeviceSelect('Android')">
+            <span class="location-icon">🤖</span>
+            <span>Android</span>
           </button>
         </div>
       </div>
@@ -351,12 +351,8 @@
         }
       }
 
-      function handleLocationSelect(location) {
-        if (location === 'Non-UK') {
-          alert('Sorry, this offer is only available to UK residents.');
-          return;
-        }
-        tiktokTrack('CompleteRegistration', { value: 0.50, currency: 'GBP' });
+      function handleDeviceSelect(device) {
+        tiktokTrack('CompleteRegistration', { value: 0.50, currency: 'GBP', content_type: device });
         document.getElementById('qualifierPage').classList.add('hidden');
         document.getElementById('mainLander').classList.remove('hidden');
         startCountdown();
