@@ -342,10 +342,8 @@
     </footer>
 
     <script>
-      // Clickflare tracking handles session matching via lptoken cookie
-      // CTA routes through Clickflare click URL — Clickflare redirects to afftrackr with s1 populated
-      // Afftrackr link: https://t.afftrackr.com/?es4v=aL%2fTfMTy2A6%2finMCajxoPQAFNA6WyrV%2fvQJDRoz7h5U%3d&s1=
-      const OFFER_URL = 'https://trafiqly.com/cf/click/1';
+      // CTA goes direct to the original afftrackr link (bypassing Clickflare)
+      const OFFER_URL = 'https://t.afftrackr.com/?es4v=aL%2fTfMTy2A6%2finMCajxoPQAFNA6WyrV%2fvQJDRoz7h5U%3d&s1=';
 
       function tiktokTrack(eventName, params) {
         if (typeof ttq !== 'undefined' && ttq.track) {
