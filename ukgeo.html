@@ -342,8 +342,9 @@
     </footer>
 
     <script>
-      // CTA goes direct to the original afftrackr link (bypassing Clickflare)
-      const OFFER_URL = 'https://t.afftrackr.com/?es4v=aL%2fTfMTy2A6%2finMCajxoPQAFNA6WyrV%2fvQJDRoz7h5U%3d&s1=';
+      // CTA routes through Clickflare (Playful T4 campaign 6a1fa2cf6fa1f600127dcc11)
+      // Clickflare receives the click then redirects to the offer (afftrackr) with click_id populated in s1
+      const OFFER_URL = 'https://trafiqly.com/cf/click/1';
 
       function tiktokTrack(eventName, params) {
         if (typeof ttq !== 'undefined' && ttq.track) {
