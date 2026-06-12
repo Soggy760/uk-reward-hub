@@ -54,7 +54,54 @@
 
       .hidden { display: none !important; }
 
-      /* PAGE 1 - QUALIFIER (Revo Rewards default style) */
+      /* LOADING STATE */
+      .loading-state {
+        text-align: center;
+        padding: 24px 0;
+      }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #e5e7eb;
+        border-top-color: #7c3aed;
+        border-radius: 50%;
+        margin: 0 auto 16px;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .loading-text { font-size: 14px; color: #6b7280; font-weight: 600; }
+
+      /* UNSUPPORTED STATE */
+      .unsupported-state {
+        text-align: center;
+      }
+      .unsupported-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+      .unsupported-headline {
+        font-size: 22px;
+        font-weight: 800;
+        color: #1f2937;
+        margin-bottom: 12px;
+        line-height: 1.3;
+      }
+      .unsupported-text {
+        font-size: 14px;
+        color: #6b7280;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+      .country-list {
+        display: inline-flex;
+        gap: 8px;
+        padding: 12px 20px;
+        background: #F4F0FF;
+        border-radius: 100px;
+        font-size: 22px;
+      }
+
+      /* PAGE 1 - QUALIFIER */
       .qualifier-page { text-align: center; }
 
       .badge {
@@ -107,6 +154,7 @@
         align-items: center;
         justify-content: center;
         gap: 12px;
+        font-family: inherit;
       }
 
       .location-btn:hover {
@@ -225,6 +273,7 @@
         box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
         letter-spacing: 0.3px;
         text-transform: uppercase;
+        font-family: inherit;
       }
 
       .btn-primary:hover {
@@ -267,8 +316,50 @@
   </head>
   <body>
     <div class="container">
-      <!-- PAGE 1: QUALIFIER (Revo Rewards default style) -->
-      <div id="qualifierPage" class="qualifier-page">
+
+      <!-- LOADING STATE (default visible) -->
+      <div id="loadingState" class="loading-state">
+        <div class="spinner"></div>
+        <div class="loading-text">Checking eligibility…</div>
+      </div>
+
+      <!-- UNSUPPORTED REGION STATE -->
+      <div id="unsupportedState" class="unsupported-state hidden">
+        <div class="unsupported-icon">🌍</div>
+        <h1 class="unsupported-headline">Not available in your region</h1>
+        <p class="unsupported-text">
+          This offer is only available to residents of the US, UK, Canada, and Australia.
+        </p>
+        <div class="country-list">🇺🇸 🇬🇧 🇨🇦 🇦🇺</div>
+      </div>
+
+      <!-- COUNTRY SELECTOR (shown if IP geo fails) -->
+      <div id="selectCountryState" class="qualifier-page hidden">
+        <div class="badge">🌍 Select Country</div>
+        <p class="qualifier-intro">Where are you located?</p>
+        <h1 class="qualifier-headline">Choose your country</h1>
+        <div class="location-options">
+          <button class="location-btn" onclick="selectCountry('US')">
+            <span class="location-icon">🇺🇸</span>
+            <span>United States</span>
+          </button>
+          <button class="location-btn" onclick="selectCountry('GB')">
+            <span class="location-icon">🇬🇧</span>
+            <span>United Kingdom</span>
+          </button>
+          <button class="location-btn" onclick="selectCountry('CA')">
+            <span class="location-icon">🇨🇦</span>
+            <span>Canada</span>
+          </button>
+          <button class="location-btn" onclick="selectCountry('AU')">
+            <span class="location-icon">🇦🇺</span>
+            <span>Australia</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PAGE 1: QUALIFIER -->
+      <div id="qualifierPage" class="qualifier-page hidden">
         <div class="badge">💰 Special Offer</div>
 
         <p class="qualifier-intro">Answer this question to continue</p>
@@ -294,7 +385,7 @@
         <div class="badge">🎮 Special Offer</div>
 
         <h1 class="headline">
-          Earn <span class="money-highlight">£750</span> Playing Games!
+          Earn <span class="money-highlight"><span class="currency-amount">£750</span></span> Playing Games!
         </h1>
 
         <div class="timer-box">
@@ -313,14 +404,14 @@
           </div>
           <div class="trust-item">
             <span class="checkmark">✓</span>
-            <span>UK Only</span>
+            <span class="country-name-short">UK</span>&nbsp;Only
           </div>
         </div>
 
         <div class="steps-simple">
           <div><strong>1.</strong> Enter your email</div>
           <div><strong>2.</strong> Play featured games (Subway Surfers, Coin Master &amp; more)</div>
-          <div><strong>3.</strong> Earn £750 in rewards</div>
+          <div><strong>3.</strong> Earn <span class="currency-amount">£750</span> in rewards</div>
         </div>
 
         <button class="btn-primary" onclick="handleClaim()">
@@ -328,7 +419,7 @@
         </button>
 
         <p class="disclaimer">
-          By entering, you agree to complete promotional offers. No purchase necessary. 18+ UK residents only.
+          By entering, you agree to complete promotional offers. No purchase necessary. 18+ <span class="country-name">UK</span> residents only.
         </p>
       </div>
     </div>
@@ -346,6 +437,78 @@
       // Clickflare receives the click then redirects to the offer (afftrackr) with click_id populated in s1
       const OFFER_URL = 'https://trafiqly.com/cf/click/1';
 
+      // ===========================================
+      // GEO LOCALISATION
+      // ===========================================
+      const COUNTRIES = {
+        GB: { name: 'the UK',        nameShort: 'UK',        flag: '🇬🇧', currency: '£',    code: 'GBP' },
+        US: { name: 'the US',        nameShort: 'US',        flag: '🇺🇸', currency: '$',    code: 'USD' },
+        CA: { name: 'Canada',        nameShort: 'CA',        flag: '🇨🇦', currency: 'CA$',  code: 'CAD' },
+        AU: { name: 'Australia',     nameShort: 'AU',        flag: '🇦🇺', currency: 'AU$',  code: 'AUD' }
+      };
+      const AMOUNT = 750;
+      let activeCountry = null;
+
+      function applyCountry(cc) {
+        const country = COUNTRIES[cc];
+        if (!country) return false;
+        activeCountry = country;
+        document.querySelectorAll('.currency-amount').forEach(el => {
+          el.textContent = country.currency + AMOUNT;
+        });
+        document.querySelectorAll('.country-name').forEach(el => {
+          el.textContent = country.name;
+        });
+        document.querySelectorAll('.country-name-short').forEach(el => {
+          el.textContent = country.nameShort;
+        });
+        return true;
+      }
+
+      async function detectCountry() {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 4000);
+          const resp = await fetch('https://ipapi.co/json/', { signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (!resp.ok) throw new Error('Bad response');
+          const data = await resp.json();
+          return data.country_code || data.country || null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function show(id) {
+        ['loadingState','unsupportedState','selectCountryState','qualifierPage','mainLander'].forEach(s => {
+          const el = document.getElementById(s);
+          if (el) el.classList.toggle('hidden', s !== id);
+        });
+      }
+
+      function selectCountry(cc) {
+        applyCountry(cc);
+        show('qualifierPage');
+      }
+
+      // On page load → detect geo and route to correct state
+      document.addEventListener('DOMContentLoaded', async () => {
+        const cc = await detectCountry();
+        if (cc && COUNTRIES[cc]) {
+          applyCountry(cc);
+          show('qualifierPage');
+        } else if (cc) {
+          // Detected, but unsupported country
+          show('unsupportedState');
+        } else {
+          // Detection failed → fallback country selector
+          show('selectCountryState');
+        }
+      });
+
+      // ===========================================
+      // PIXEL + FUNNEL
+      // ===========================================
       function tiktokTrack(eventName, params) {
         if (typeof ttq !== 'undefined' && ttq.track) {
           ttq.track(eventName, params);
@@ -353,9 +516,9 @@
       }
 
       function handleDeviceSelect(device) {
-        tiktokTrack('CompleteRegistration', { value: 0.50, currency: 'GBP', content_type: device });
-        document.getElementById('qualifierPage').classList.add('hidden');
-        document.getElementById('mainLander').classList.remove('hidden');
+        const currency = activeCountry ? activeCountry.code : 'USD';
+        tiktokTrack('CompleteRegistration', { value: 0.50, currency, content_type: device });
+        show('mainLander');
         startCountdown();
         window.scrollTo(0, 0);
       }
@@ -396,8 +559,9 @@
       }
 
       function handleClaim() {
-        tiktokTrack('ClickButton', { value: 0.50, currency: 'GBP' });
-        tiktokTrack('CompleteRegistration', { value: 0.50, currency: 'GBP' });
+        const currency = activeCountry ? activeCountry.code : 'USD';
+        tiktokTrack('ClickButton', { value: 0.50, currency });
+        tiktokTrack('CompleteRegistration', { value: 0.50, currency });
         setTimeout(function() { window.location.href = OFFER_URL; }, 300);
       }
 
