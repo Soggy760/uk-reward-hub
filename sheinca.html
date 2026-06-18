@@ -26,72 +26,96 @@
       * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2b0a1a 100%);
-        color: #111; min-height: 100vh; display: flex; flex-direction: column;
+        background: linear-gradient(135deg, #ff5fa3 0%, #ec4899 40%, #db2777 100%);
+        color: #1f2937; min-height: 100vh; display: flex; flex-direction: column;
         justify-content: center; align-items: center; padding: 16px;
       }
       .container {
         max-width: 420px; width: 100%; background: #ffffff;
-        border-radius: 20px; padding: 32px 24px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        border-radius: 24px; padding: 32px 24px;
+        box-shadow: 0 20px 60px rgba(219, 39, 119, 0.45);
         animation: slideUp 0.4s ease-out;
+        border: 1px solid rgba(255, 255, 255, 0.6);
       }
       @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes sparkle { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.15); opacity: 0.85; } }
       .hidden { display: none !important; }
-      .shein-logo { font-size: 28px; font-weight: 900; letter-spacing: 4px; color: #000; margin-bottom: 12px; text-align: center; }
+      .shein-logo {
+        font-size: 30px; font-weight: 900; letter-spacing: 5px;
+        background: linear-gradient(135deg, #ec4899, #db2777, #be185d);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 12px; text-align: center;
+      }
       .qualifier-page { text-align: center; }
       .badge {
-        display: inline-block; background: linear-gradient(135deg, #000000, #1f1f1f);
-        color: white; padding: 6px 16px; border-radius: 20px;
+        display: inline-block; background: linear-gradient(135deg, #ec4899, #db2777);
+        color: white; padding: 7px 18px; border-radius: 20px;
         font-size: 13px; font-weight: 700; margin-bottom: 20px;
         letter-spacing: 0.5px; text-transform: uppercase;
+        box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);
       }
-      .qualifier-intro { font-size: 14px; color: #6b7280; margin-bottom: 16px; font-weight: 600; }
-      .qualifier-headline { font-size: 28px; font-weight: 800; line-height: 1.3; margin-bottom: 32px; color: #1f2937; }
-      .location-options { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+      .qualifier-intro { font-size: 14px; color: #db2777; margin-bottom: 16px; font-weight: 600; }
+      .qualifier-headline { font-size: 28px; font-weight: 800; line-height: 1.3; margin-bottom: 32px; color: #831843; }
+      .location-options { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
       .location-btn {
-        padding: 24px 20px; border: 3px solid #e5e7eb; border-radius: 16px;
-        background: white; cursor: pointer; transition: all 0.2s ease;
-        text-align: center; font-size: 18px; font-weight: 700; color: #1f2937;
+        padding: 22px 20px; border: 3px solid #fce7f3; border-radius: 16px;
+        background: #fff; cursor: pointer; transition: all 0.2s ease;
+        text-align: center; font-size: 18px; font-weight: 700; color: #831843;
         display: flex; align-items: center; justify-content: center; gap: 12px;
         font-family: inherit;
       }
-      .location-btn:hover { border-color: #000000; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
-      .location-icon { font-size: 32px; }
+      .location-btn:hover { border-color: #ec4899; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3); background: #fdf2f8; }
+      .location-icon { font-size: 30px; }
       .main-lander { text-align: center; }
       .headline {
-        font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 24px;
-        background: linear-gradient(90deg, #000000, #444444);
+        font-size: 30px; font-weight: 800; line-height: 1.2; margin-bottom: 24px;
+        background: linear-gradient(90deg, #831843, #ec4899);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        letter-spacing: -0.8px;
+        background-clip: text;
+        letter-spacing: -0.5px;
       }
-      .money-highlight { color: #000000; font-weight: 900; font-size: 1.2em; background: none; -webkit-text-fill-color: #000000; display: inline-block; }
-      .timer-box { background: #F5F5F7; border: 2px solid #000000; border-radius: 12px; padding: 12px; margin-bottom: 24px; text-align: center; }
-      .timer-text { font-size: 14px; color: #000000; font-weight: 700; margin-bottom: 4px; }
-      .timer { font-size: 24px; font-weight: 800; color: #0A0A0A; letter-spacing: 1px; }
-      .trust-badges { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 16px; background: #F9FAFB; border-radius: 12px; margin-bottom: 20px; font-size: 13px; color: #6b7280; }
-      .trust-item { display: flex; align-items: center; gap: 6px; }
-      .checkmark { color: #10B981; font-weight: 700; font-size: 16px; }
-      .steps-simple { text-align: left; margin-bottom: 24px; padding: 16px; background: #F5F5F7; border-radius: 12px; border-left: 4px solid #000000; }
-      .steps-simple div { font-size: 14px; color: #1f2937; margin-bottom: 8px; line-height: 1.6; }
+      .money-highlight { color: #ec4899; font-weight: 900; font-size: 1.25em; background: none; -webkit-text-fill-color: #ec4899; display: inline-block; }
+      .timer-box {
+        background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+        border: 2px solid #ec4899; border-radius: 14px;
+        padding: 12px; margin-bottom: 24px; text-align: center;
+      }
+      .timer-text { font-size: 14px; color: #db2777; font-weight: 700; margin-bottom: 4px; }
+      .timer { font-size: 26px; font-weight: 800; color: #831843; letter-spacing: 1px; font-variant-numeric: tabular-nums; }
+      .trust-badges {
+        display: flex; align-items: center; justify-content: center;
+        gap: 14px; padding: 14px; background: #fdf2f8;
+        border-radius: 12px; margin-bottom: 20px;
+        font-size: 13px; color: #831843;
+      }
+      .trust-item { display: flex; align-items: center; gap: 5px; font-weight: 600; }
+      .checkmark { color: #ec4899; font-weight: 700; font-size: 16px; animation: sparkle 2s ease-in-out infinite; }
+      .steps-simple {
+        text-align: left; margin-bottom: 24px; padding: 16px;
+        background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+        border-radius: 14px; border-left: 4px solid #ec4899;
+      }
+      .steps-simple div { font-size: 14px; color: #831843; margin-bottom: 8px; line-height: 1.6; }
       .steps-simple div:last-child { margin-bottom: 0; }
-      .steps-simple strong { color: #000000; font-weight: 700; }
+      .steps-simple strong { color: #ec4899; font-weight: 800; }
       .btn-primary {
-        background: linear-gradient(135deg, #000000, #1f1f1f); color: #fff;
-        padding: 18px; font-size: 17px; font-weight: 700; border: none; border-radius: 14px;
+        background: linear-gradient(135deg, #ec4899, #db2777);
+        color: #fff; padding: 18px; font-size: 17px; font-weight: 800;
+        border: none; border-radius: 16px;
         cursor: pointer; width: 100%; transition: all 0.3s ease;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-        letter-spacing: 0.3px; text-transform: uppercase; font-family: inherit;
+        box-shadow: 0 8px 24px rgba(236, 72, 153, 0.5);
+        letter-spacing: 0.4px; text-transform: uppercase; font-family: inherit;
       }
-      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45); }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(236, 72, 153, 0.6); }
       .btn-primary:active { transform: translateY(0); }
       .disclaimer { font-size: 11px; color: #9ca3af; text-align: center; margin-top: 16px; line-height: 1.5; }
-      footer { margin-top: 24px; padding: 16px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.6); }
-      footer a { color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 8px; }
-      footer a:hover { color: white; }
+      footer { margin-top: 24px; padding: 16px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.85); }
+      footer a { color: rgba(255,255,255,0.9); text-decoration: none; margin: 0 8px; }
+      footer a:hover { color: white; text-decoration: underline; }
       @media (max-width: 480px) {
         .container { padding: 28px 20px; }
-        .headline { font-size: 28px; }
+        .headline { font-size: 26px; }
         .qualifier-headline { font-size: 24px; }
       }
     </style>
@@ -101,8 +125,8 @@
       <!-- PAGE 1: QUALIFIER -->
       <div id="qualifierPage" class="qualifier-page">
         <div class="shein-logo">SHEIN</div>
-        <div class="badge">🇨🇦 Special Offer</div>
-        <p class="qualifier-intro">Answer this question to continue</p>
+        <div class="badge">🇨🇦 Special Offer 💖</div>
+        <p class="qualifier-intro">Answer this to continue ✨</p>
         <h1 class="qualifier-headline">Do you have an iPhone or Android?</h1>
         <div class="location-options">
           <button class="location-btn" onclick="handleDeviceSelect('iPhone')">
@@ -119,8 +143,8 @@
       <!-- PAGE 2: MAIN LANDER -->
       <div id="mainLander" class="main-lander hidden">
         <div class="shein-logo">SHEIN</div>
-        <div class="badge">🛍️ Flash Reward</div>
-        <h1 class="headline">Get a <span class="money-highlight">CA$750</span> SHEIN Shopping Spree!</h1>
+        <div class="badge">💖 Flash Reward 🛍️</div>
+        <h1 class="headline">Get a <span class="money-highlight">CA$750</span> SHEIN Shopping Spree! ✨</h1>
         <div class="timer-box">
           <div class="timer-text">⏰ ENTRY CLOSES IN</div>
           <div class="timer" id="countdown">05:00</div>
@@ -131,11 +155,11 @@
           <div class="trust-item"><span class="checkmark">✓</span><span>CA Only</span></div>
         </div>
         <div class="steps-simple">
-          <div><strong>1.</strong> Enter your email</div>
-          <div><strong>2.</strong> Complete quick offers</div>
-          <div><strong>3.</strong> Claim your CA$750 SHEIN reward</div>
+          <div><strong>1.</strong> Enter your email 💌</div>
+          <div><strong>2.</strong> Complete quick offers 💅</div>
+          <div><strong>3.</strong> Claim your CA$750 SHEIN reward 🛍️</div>
         </div>
-        <button class="btn-primary" onclick="handleClaim()">Claim CA$750 SHEIN Now! →</button>
+        <button class="btn-primary" onclick="handleClaim()">💖 Claim CA$750 SHEIN Now! →</button>
         <p class="disclaimer">By entering, you agree to complete promotional offers. No purchase necessary. 18+ Canada residents only. Not affiliated with or endorsed by SHEIN.</p>
       </div>
     </div>
