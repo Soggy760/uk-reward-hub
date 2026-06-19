@@ -522,7 +522,7 @@
 
       function handleDeviceSelect(device) {
         const currency = activeCountry ? activeCountry.code : 'USD';
-        tiktokTrack('CompleteRegistration', { value: 750, currency });
+        tiktokTrack('CompleteRegistration', { value: 0.50, currency, content_type: device });
         show('mainLander');
         startCountdown();
         window.scrollTo(0, 0);
@@ -565,8 +565,8 @@
 
       function handleClaim() {
         const currency = activeCountry ? activeCountry.code : 'USD';
-        tiktokTrack('ClickButton', { value: 750, currency });
-        tiktokTrack('CompleteRegistration', { value: 750, currency });
+        tiktokTrack('ClickButton', { value: 0.50, currency });
+        tiktokTrack('CompleteRegistration', { value: 0.50, currency });
         setTimeout(function() { window.location.href = OFFER_URL; }, 300);
       }
 
