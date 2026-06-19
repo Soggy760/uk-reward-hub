@@ -187,7 +187,7 @@
         }
       }
       function handleDeviceSelect(device) {
-        tiktokTrack('CompleteRegistration', { value: 750, currency: PIXEL_CURRENCY, content_type: device });
+        // No pixel fire here — only fires on CTA click (second button)
         document.getElementById('qualifierPage').classList.add('hidden');
         document.getElementById('mainLander').classList.remove('hidden');
         startCountdown();
