@@ -220,8 +220,10 @@
         }, '');
       }
       function handleClaim() {
-        tiktokTrack('ClickButton', { value: 750, currency: PIXEL_CURRENCY });
-        tiktokTrack('CompleteRegistration', { value: 750, currency: PIXEL_CURRENCY });
+        // ClickButton = lander engagement signal only.
+        // CompleteRegistration fires SERVER-SIDE via Clickflare → TikTok Events API on real conversion
+        // — don't fire it here too, that would double-count.
+        tiktokTrack('ClickButton', { currency: PIXEL_CURRENCY });
         setTimeout(function() { window.location.href = OFFER_URL; }, 300);
       }
       document.onkeydown = e => {
