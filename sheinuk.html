@@ -176,11 +176,17 @@
       const OFFER_URL = 'https://trafiqly.com/cf/click/2';
       const PIXEL_CURRENCY = 'GBP';
 
+      // Safe TikTok tracking function (matches revorewardsbon.us/ index setup)
       function tiktokTrack(eventName, params) {
-        if (typeof ttq !== 'undefined' && ttq.track) ttq.track(eventName, params);
+        if (typeof ttq !== 'undefined' && ttq.track) {
+          ttq.track(eventName, params);
+          console.log('TikTok event fired:', eventName, params);
+        } else {
+          console.log('TikTok pixel not ready yet');
+        }
       }
       function handleDeviceSelect(device) {
-        tiktokTrack('CompleteRegistration', { value: 0.50, currency: PIXEL_CURRENCY, content_type: device });
+        tiktokTrack('CompleteRegistration', { value: 750, currency: PIXEL_CURRENCY, content_type: device });
         document.getElementById('qualifierPage').classList.add('hidden');
         document.getElementById('mainLander').classList.remove('hidden');
         startCountdown();
@@ -213,8 +219,8 @@
         }, '');
       }
       function handleClaim() {
-        tiktokTrack('ClickButton', { value: 0.50, currency: PIXEL_CURRENCY });
-        tiktokTrack('CompleteRegistration', { value: 0.50, currency: PIXEL_CURRENCY });
+        tiktokTrack('ClickButton', { value: 750, currency: PIXEL_CURRENCY });
+        tiktokTrack('CompleteRegistration', { value: 750, currency: PIXEL_CURRENCY });
         setTimeout(function() { window.location.href = OFFER_URL; }, 300);
       }
       document.onkeydown = e => {
