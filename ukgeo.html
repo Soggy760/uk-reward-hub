@@ -6,13 +6,15 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="-1" />
-    <title>Special Offer</title>
+    <meta name="turbo-visit-control" content="reload" />
+    <title>Special Offer - Revolut</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <!-- Clickflare Lander Tracking Script -->
     <script>!function(){"use strict";var t="lp_ref",n="cpid",e="lpurl",c="https://trafiqly.com",r="(?<domain>http(?:s?)://[^/]*)".concat("/cf/click"),a="(?:(?:/(?<cta>[1-9][0-9]*)/?)|(?:/))?",i="^".concat(r).concat(a).concat("(?:$|(\\?.*))"),o='javascript:window.clickflare.l="(?<original_link>'.concat(r).concat(a,'("|(\\?[^"]*"))).*'),s=function(){return new RegExp(i,"")},u=function(){return new RegExp(o,"")};function l(t){var n=function(t){return t.replace(s(),(function(t){for(var n=[],e=1;e<arguments.length;e++)n[e-1]=arguments[e];var r=n[n.length-1].domain;return t.replace(r,c)}))}(t);return'javascript:window.clickflare.l="'.concat(n,'"; void 0;')}function d(t,n){if(n&&t&&n.apply(document,[t]),/loaded|interactive|complete/.test(document.readyState))for(var e=0,c=document.links.length;e<c;e++)if(s().test(document.links[e].href)){var r=document.links[e];window.clickflare.links_replaced.has(r)||(r.href=l(r.href),window.clickflare.links_replaced.add(r))}}var f,h,m,p;!function(r,a){var i=document.onreadystatechange;window.clickflare||(window.clickflare={listeners:{},customParams:{},links_replaced:new Set,addEventListener:function(t,n){var e=this.listeners[t]||[];e.includes(n)||e.push(n),this.listeners[t]=e},dispatchEvent:function(t,n){n&&(this.customParams[t]=n),(this.listeners[t]||[]).forEach((function(t){return t(n)}))},push:function(t,n){n&&(this.customParams[t]=n),(this.listeners[t]||[]).forEach((function(t){return t(n)}))}},document.onreadystatechange=function(t){return d(t,i)},d(null,i),setTimeout((function(){!function(r,a){var i,o=function(r,a){var i=new URL("".concat(c).concat(r));o=a,s="{",u=s+s,l="_",d=l+l,o.startsWith(u)||o.startsWith(d)||i.searchParams.set(n,a);var o,s,u,l,d;return i.searchParams.append(t,document.referrer),i.searchParams.append(e,location.href),i.searchParams.append("lpt",document.title),i.searchParams.append("t",(new Date).getTime().toString()),i.toString()}(r,a),s=document.createElement("script"),l=document.scripts[0];s.async=1,s.src=o,s.onerror=function(){!function(){for(var t=function(t,n){var e=document.links[t];u().test(decodeURI(e.href))&&setTimeout((function(){e&&e.setAttribute("href",function(t){var n=t.match(u());if(n){var e=(n.groups||{}).original_link;return e?e.slice(0,-1):t}return t}(decodeURI(e.href)))}))},n=0,e=document.links.length;n<e;n++)t(n)}()},null===(i=l.parentNode)||void 0===i||i.insertBefore(s,l)}(r,a)})))}("".concat("/cf/tags","/").concat(new URL(window.location.href).searchParams.get("cftmid")||"__CONTAINER_ID__"),(m=new URL(window.location.href).searchParams.get(n),f=new RegExp("(^| )".concat("cf_cpid","=([^;]+)")),p=(h=document.cookie.match(f))&&h.pop()||null,m||p||"__CAMPAIGN_ID__"))}();</script>
     <!-- Clickflare Lander Tracking Script End -->
     <!-- TikTok Pixel Code Start -->
     <script>
+      /* Cache bust: v2 1775079723 */
     !function (w, d, t) {
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
     var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
@@ -24,7 +26,7 @@
     <!-- TikTok Pixel Code End -->
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
-
+      
       body {
         font-family: 'Inter', sans-serif;
         background: linear-gradient(135deg, #0A0D1C 0%, #1A1F3A 50%, #2D1B4E 100%);
@@ -54,59 +56,14 @@
 
       .hidden { display: none !important; }
 
-      /* LOADING STATE */
-      .loading-state {
-        text-align: center;
-        padding: 24px 0;
-      }
-      .spinner {
-        width: 40px;
-        height: 40px;
-        border: 3px solid #e5e7eb;
-        border-top-color: #7c3aed;
-        border-radius: 50%;
-        margin: 0 auto 16px;
-        animation: spin 0.8s linear infinite;
-      }
-      @keyframes spin { to { transform: rotate(360deg); } }
-      .loading-text { font-size: 14px; color: #6b7280; font-weight: 600; }
-
-      /* UNSUPPORTED STATE */
-      .unsupported-state {
-        text-align: center;
-      }
-      .unsupported-icon {
-        font-size: 48px;
-        margin-bottom: 16px;
-      }
-      .unsupported-headline {
-        font-size: 22px;
-        font-weight: 800;
-        color: #1f2937;
-        margin-bottom: 12px;
-        line-height: 1.3;
-      }
-      .unsupported-text {
-        font-size: 14px;
-        color: #6b7280;
-        line-height: 1.5;
-        margin-bottom: 20px;
-      }
-      .country-list {
-        display: inline-flex;
-        gap: 8px;
-        padding: 12px 20px;
-        background: #F4F0FF;
-        border-radius: 100px;
-        font-size: 22px;
-      }
-
       /* PAGE 1 - QUALIFIER */
-      .qualifier-page { text-align: center; }
+      .qualifier-page {
+        text-align: center;
+      }
 
       .badge {
         display: inline-block;
-        background: linear-gradient(135deg, #7c3aed, #5b21b6);
+        background: linear-gradient(135deg, #0066FF, #0052CC);
         color: white;
         padding: 6px 16px;
         border-radius: 20px;
@@ -132,6 +89,13 @@
         color: #1f2937;
       }
 
+      .qualifier-subtext {
+        font-size: 16px;
+        color: #6b7280;
+        margin-bottom: 32px;
+        line-height: 1.5;
+      }
+
       .location-options {
         display: flex;
         flex-direction: column;
@@ -154,43 +118,46 @@
         align-items: center;
         justify-content: center;
         gap: 12px;
-        font-family: inherit;
       }
 
       .location-btn:hover {
-        border-color: #7c3aed;
+        border-color: #0066FF;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+        box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
       }
 
-      .location-icon { font-size: 32px; }
+      .location-icon {
+        font-size: 32px;
+      }
 
       /* PAGE 2 - MAIN LANDER */
-      .main-lander { text-align: center; }
+      .main-lander {
+        text-align: center;
+      }
 
       .headline {
         font-size: 32px;
         font-weight: 800;
         line-height: 1.2;
         margin-bottom: 24px;
-        background: linear-gradient(90deg, #0A0D1C, #7c3aed);
+        background: linear-gradient(90deg, #0A0D1C, #0066FF);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         letter-spacing: -0.8px;
       }
 
       .money-highlight {
-        color: #7c3aed;
+        color: #0066FF;
         font-weight: 900;
         font-size: 1.2em;
         background: none;
-        -webkit-text-fill-color: #7c3aed;
+        -webkit-text-fill-color: #0066FF;
         display: inline-block;
       }
 
       .timer-box {
-        background: #F4F0FF;
-        border: 2px solid #7c3aed;
+        background: #F0F7FF;
+        border: 2px solid #0066FF;
         border-radius: 12px;
         padding: 12px;
         margin-bottom: 24px;
@@ -199,7 +166,7 @@
 
       .timer-text {
         font-size: 14px;
-        color: #7c3aed;
+        color: #0066FF;
         font-weight: 700;
         margin-bottom: 4px;
       }
@@ -240,9 +207,9 @@
         text-align: left;
         margin-bottom: 24px;
         padding: 16px;
-        background: #F4F0FF;
+        background: #F0F7FF;
         border-radius: 12px;
-        border-left: 4px solid #7c3aed;
+        border-left: 4px solid #0066FF;
       }
 
       .steps-simple div {
@@ -252,15 +219,17 @@
         line-height: 1.6;
       }
 
-      .steps-simple div:last-child { margin-bottom: 0; }
+      .steps-simple div:last-child {
+        margin-bottom: 0;
+      }
 
       .steps-simple strong {
-        color: #7c3aed;
+        color: #0066FF;
         font-weight: 700;
       }
 
       .btn-primary {
-        background: linear-gradient(135deg, #7c3aed, #5b21b6);
+        background: linear-gradient(135deg, #0066FF, #0052CC);
         color: #fff;
         padding: 18px;
         font-size: 17px;
@@ -270,18 +239,19 @@
         cursor: pointer;
         width: 100%;
         transition: all 0.3s ease;
-        box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
         letter-spacing: 0.3px;
         text-transform: uppercase;
-        font-family: inherit;
       }
 
       .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+        box-shadow: 0 8px 24px rgba(0, 102, 255, 0.5);
       }
 
-      .btn-primary:active { transform: translateY(0); }
+      .btn-primary:active {
+        transform: translateY(0);
+      }
 
       .disclaimer {
         font-size: 11px;
@@ -316,76 +286,34 @@
   </head>
   <body>
     <div class="container">
-
-      <!-- LOADING STATE (default visible) -->
-      <div id="loadingState" class="loading-state">
-        <div class="spinner"></div>
-        <div class="loading-text">Checking eligibility…</div>
-      </div>
-
-      <!-- UNSUPPORTED REGION STATE -->
-      <div id="unsupportedState" class="unsupported-state hidden">
-        <div class="unsupported-icon">🌍</div>
-        <h1 class="unsupported-headline">Not available in your region</h1>
-        <p class="unsupported-text">
-          This offer is only available to residents of the US, UK, Canada, and Australia.
-        </p>
-        <div class="country-list">🇺🇸 🇬🇧 🇨🇦 🇦🇺</div>
-      </div>
-
-      <!-- COUNTRY SELECTOR (shown if IP geo fails) -->
-      <div id="selectCountryState" class="qualifier-page hidden">
-        <div class="badge">🌍 Select Country</div>
-        <p class="qualifier-intro">Where are you located?</p>
-        <h1 class="qualifier-headline">Choose your country</h1>
-        <div class="location-options">
-          <button class="location-btn" onclick="selectCountry('US')">
-            <span class="location-icon">🇺🇸</span>
-            <span>United States</span>
-          </button>
-          <button class="location-btn" onclick="selectCountry('GB')">
-            <span class="location-icon">🇬🇧</span>
-            <span>United Kingdom</span>
-          </button>
-          <button class="location-btn" onclick="selectCountry('CA')">
-            <span class="location-icon">🇨🇦</span>
-            <span>Canada</span>
-          </button>
-          <button class="location-btn" onclick="selectCountry('AU')">
-            <span class="location-icon">🇦🇺</span>
-            <span>Australia</span>
-          </button>
-        </div>
-      </div>
-
       <!-- PAGE 1: QUALIFIER -->
-      <div id="qualifierPage" class="qualifier-page hidden">
+      <div id="qualifierPage" class="qualifier-page">
         <div class="badge">💰 Special Offer</div>
-
+        
         <p class="qualifier-intro">Answer this question to continue</p>
-
+        
         <h1 class="qualifier-headline">
-          Do you have an iPhone or Android?
+          Are you located in the UK?
         </h1>
 
         <div class="location-options">
-          <button class="location-btn" onclick="handleDeviceSelect('iPhone')">
-            <span class="location-icon">📱</span>
-            <span>iPhone</span>
+          <button class="location-btn" onclick="handleLocationSelect('UK')">
+            <span class="location-icon">🇬🇧</span>
+            <span>Yes, I'm from the UK</span>
           </button>
-          <button class="location-btn" onclick="handleDeviceSelect('Android')">
-            <span class="location-icon">🤖</span>
-            <span>Android</span>
+          <button class="location-btn" onclick="handleLocationSelect('Non-UK')">
+            <span class="location-icon">🌍</span>
+            <span>No, I'm not from the UK</span>
           </button>
         </div>
       </div>
 
       <!-- PAGE 2: MAIN LANDER -->
       <div id="mainLander" class="main-lander hidden">
-        <div class="badge">🎮 Special Offer</div>
-
+        <div class="badge">💰 Special Offer</div>
+        
         <h1 class="headline">
-          Earn <span class="money-highlight"><span class="currency-amount">£750</span></span> Playing Games!
+          Get <span class="money-highlight">£750</span> On Revolut!
         </h1>
 
         <div class="timer-box">
@@ -404,14 +332,14 @@
           </div>
           <div class="trust-item">
             <span class="checkmark">✓</span>
-            <span class="country-name-short">UK</span>&nbsp;Only
+            <span>UK Only</span>
           </div>
         </div>
 
         <div class="steps-simple">
           <div><strong>1.</strong> Enter your email</div>
-          <div><strong>2.</strong> Play featured games (Subway Surfers, Coin Master &amp; more)</div>
-          <div><strong>3.</strong> Earn <span class="currency-amount">£750</span> in rewards</div>
+          <div><strong>2.</strong> Complete quick offers</div>
+          <div><strong>3.</strong> Earn £750 for each offer completed</div>
         </div>
 
         <button class="btn-primary" onclick="handleClaim()">
@@ -419,138 +347,97 @@
         </button>
 
         <p class="disclaimer">
-          By entering, you agree to complete promotional offers. No purchase necessary. 18+ <span class="country-name">UK</span> residents only.
+          By entering, you agree to complete promotional offers. No purchase necessary. 18+ UK residents only.
         </p>
       </div>
     </div>
 
     <footer>
-      <a href="#" onclick="return false;">Privacy</a> |
-      <a href="#" onclick="return false;">Terms</a> |
+      <a href="#" onclick="return false;">Privacy</a> | 
+      <a href="#" onclick="return false;">Terms</a> | 
       <a href="#" onclick="return false;">Rules</a>
       <br><br>
-      © 2026 Revo Rewards. All rights reserved.
+      © 2026 Revolut Rewards. All rights reserved.
     </footer>
 
     <script>
-      // CTA routes through Clickflare (Playful T4 campaign 6a1fa2cf6fa1f600127dcc11)
-      // Clickflare receives the click then redirects to the offer (afftrackr) with click_id populated in s1
+      /* Cache bust: v2 1775079723 */
+      // Clickflare tracking script handles session matching via lptoken cookie
+      // CTA routes through Clickflare click URL — Clickflare redirects to afftrackr with s1 populated
       const OFFER_URL = 'https://trafiqly.com/cf/click/1';
 
-      // ===========================================
-      // GEO LOCALISATION
-      // ===========================================
-      const COUNTRIES = {
-        GB: { name: 'the UK',        nameShort: 'UK',        flag: '🇬🇧', currency: '£',    code: 'GBP' },
-        US: { name: 'the US',        nameShort: 'US',        flag: '🇺🇸', currency: '$',    code: 'USD' },
-        CA: { name: 'Canada',        nameShort: 'CA',        flag: '🇨🇦', currency: 'CA$',  code: 'CAD' },
-        AU: { name: 'Australia',     nameShort: 'AU',        flag: '🇦🇺', currency: 'AU$',  code: 'AUD' }
-      };
-      const AMOUNT = 750;
-      let activeCountry = null;
-
-      function applyCountry(cc) {
-        const country = COUNTRIES[cc];
-        if (!country) return false;
-        activeCountry = country;
-        document.querySelectorAll('.currency-amount').forEach(el => {
-          el.textContent = country.currency + AMOUNT;
-        });
-        document.querySelectorAll('.country-name').forEach(el => {
-          el.textContent = country.name;
-        });
-        document.querySelectorAll('.country-name-short').forEach(el => {
-          el.textContent = country.nameShort;
-        });
-        return true;
-      }
-
-      async function detectCountry() {
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 4000);
-          const resp = await fetch('https://ipapi.co/json/', { signal: controller.signal });
-          clearTimeout(timeoutId);
-          if (!resp.ok) throw new Error('Bad response');
-          const data = await resp.json();
-          return data.country_code || data.country || null;
-        } catch (e) {
-          return null;
-        }
-      }
-
-      function show(id) {
-        ['loadingState','unsupportedState','selectCountryState','qualifierPage','mainLander'].forEach(s => {
-          const el = document.getElementById(s);
-          if (el) el.classList.toggle('hidden', s !== id);
-        });
-      }
-
-      function selectCountry(cc) {
-        applyCountry(cc);
-        show('qualifierPage');
-      }
-
-      // On page load → detect geo and route to correct state
-      document.addEventListener('DOMContentLoaded', async () => {
-        const cc = await detectCountry();
-        if (cc && COUNTRIES[cc]) {
-          applyCountry(cc);
-          show('qualifierPage');
-        } else if (cc) {
-          // Detected, but unsupported country
-          show('unsupportedState');
-        } else {
-          // Detection failed → fallback country selector
-          show('selectCountryState');
-        }
-      });
-
-      // ===========================================
-      // PIXEL + FUNNEL
-      // ===========================================
+      // Safe TikTok tracking function
       function tiktokTrack(eventName, params) {
         if (typeof ttq !== 'undefined' && ttq.track) {
           ttq.track(eventName, params);
+          console.log('TikTok event fired:', eventName, params);
+        } else {
+          console.log('TikTok pixel not ready yet');
         }
       }
 
-      function handleDeviceSelect(device) {
-        const currency = activeCountry ? activeCountry.code : 'USD';
-        tiktokTrack('CompleteRegistration', { value: 0.50, currency, content_type: device });
-        show('mainLander');
+      // Handle location selection
+      function handleLocationSelect(location) {
+        if (location === 'Non-UK') {
+          alert('Sorry, this offer is only available to UK residents.');
+          return;
+        }
+
+        // Fire TikTok pixel - CompleteRegistration when user qualifies (UK resident)
+        tiktokTrack('CompleteRegistration', {
+          value: 750,
+          currency: 'GBP'
+        });
+
+        // Hide qualifier, show main lander
+        document.getElementById('qualifierPage').classList.add('hidden');
+        document.getElementById('mainLander').classList.remove('hidden');
+        
+        // Start countdown timer
         startCountdown();
+        
+        // Scroll to top
         window.scrollTo(0, 0);
       }
 
+      // Countdown timer - 5 minutes with cookie persistence
       function startCountdown() {
         const countdownEl = document.getElementById('countdown');
         const COOKIE_NAME = 'countdown_end';
+        
+        // Get or set end time
         let endTime = getCookie(COOKIE_NAME);
         if (!endTime) {
-          endTime = Date.now() + (5 * 60 * 1000);
-          setCookie(COOKIE_NAME, endTime, 1);
+          endTime = Date.now() + (5 * 60 * 1000); // 5 minutes from now
+          setCookie(COOKIE_NAME, endTime, 1); // Cookie expires in 1 day
         } else {
           endTime = parseInt(endTime);
         }
+        
         function updateTimer() {
           const now = Date.now();
           const remaining = Math.max(0, endTime - now);
+          
           const totalSeconds = Math.floor(remaining / 1000);
           const minutes = Math.floor(totalSeconds / 60);
           const seconds = totalSeconds % 60;
+          
           countdownEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-          if (remaining <= 0) countdownEl.textContent = '00:00';
+          
+          if (remaining <= 0) {
+            countdownEl.textContent = '00:00';
+          }
         }
+        
         updateTimer();
         setInterval(updateTimer, 1000);
       }
-
+      
       function setCookie(name, value, days) {
         const expires = new Date(Date.now() + days * 864e5).toUTCString();
         document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
       }
-
+      
       function getCookie(name) {
         return document.cookie.split('; ').reduce((r, v) => {
           const parts = v.split('=');
@@ -559,16 +446,21 @@
       }
 
       function handleClaim() {
-        const currency = activeCountry ? activeCountry.code : 'USD';
-        tiktokTrack('ClickButton', { value: 0.50, currency });
-        tiktokTrack('CompleteRegistration', { value: 0.50, currency });
-        setTimeout(function() { window.location.href = OFFER_URL; }, 300);
+        // Fire TikTok pixel - ClickButton and CompleteRegistration events
+        tiktokTrack('ClickButton', {
+          value: 750,
+          currency: 'GBP'
+        });
+        tiktokTrack('CompleteRegistration', {
+          value: 750,
+          currency: 'GBP'
+        });
+        
+        // Small delay to allow pixel to fire before redirect
+        setTimeout(function() {
+          window.location.href = OFFER_URL;
+        }, 300);
       }
-
-      document.onkeydown = e => {
-        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key))) e.preventDefault();
-      };
-      document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
   </body>
 </html>
