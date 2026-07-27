@@ -11,15 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
     <!-- ============================================================
-         RedTrack Lander Tracking Script (OPTIONAL — account-specific)
-         ------------------------------------------------------------
-         If you have the exact snippet from RedTrack > Tools > Landers,
-         paste it here (uncommented). It auto-rewrites CTA links pointing
-         at the tracking domain and appends the click id for you.
-         If you leave this out, the passthrough script at the bottom of
-         the page handles the click id manually (works standalone).
-         <script src="https://cdn.....js"></script>
+         RedTrack no-redirect tracking script (campaign: mai fanvue).
+         Registers the click on page load and rewrites the CTA link to
+         carry the LP Click ID. Must load before the CTA is clicked, so
+         it stays here in <head> rather than at the end of <body>.
+         Also captures fbp/fbc into sub19/sub20 for Meta CAPI matching.
          ============================================================ -->
+    <script type="text/javascript" src="https://idnrf.ttrk.io/track.js?rtkcmpid=6a6631114d4314fffb46fd74"></script>
 
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -333,9 +331,10 @@
           <div><strong>3.</strong> Start following Maya</div>
         </div>
 
-        <!-- CTA: RedTrack click endpoint. The passthrough script below sets the
-             final href to https://idnrf.ttrk.io/click?clickid=<id> so the click id
-             flows through /click -> offer (www.fanvue.com/mayathaii?fvc_id={clickid}). -->
+        <!-- CTA: bare RedTrack click endpoint. track.js rewrites this on load to
+             carry the LP Click ID, which /click resolves to the offer
+             (www.fanvue.com/mayathaii?fvc_id=<LP Click ID>). Do not append an id
+             by hand — /click ignores it and mints its own. -->
         <a class="btn-primary" id="ctaBtn" href="https://idnrf.ttrk.io/click" rel="nofollow noopener">
           Continue to Fanvue →
         </a>
@@ -355,50 +354,10 @@
     </footer>
 
     <script>
-      /* =========================================================================
-         RedTrack click-id passthrough (standalone — no external tracker needed)
-         -------------------------------------------------------------------------
-         RedTrack appends the click id to this lander's URL when a campaign uses a
-         landing page. Default param is "clickid"; we also check common alternates
-         so it works regardless of how the campaign is configured. We read it once
-         and build the CTA href as:
-             https://idnrf.ttrk.io/click?clickid=<id>
-         RedTrack's /click endpoint resolves that to the offer with {clickid}
-         filled: https://www.fanvue.com/mayathaii?fvc_id=<id>
-         ========================================================================= */
-      (function () {
-        var CLICK_ENDPOINT = 'https://idnrf.ttrk.io/click';
-        // 'rtkcid' first — that is what RedTrack actually appends when it
-        // redirects to this lander (verified in a HAR of a live test click).
-        // The rest stay as fallbacks in case the campaign is reconfigured.
-        var PARAM_CANDIDATES = ['rtkcid', 'clickid', 'rtkclickid', 'rtkclickid-store', '_rtkclickid', 'cid'];
-
-        function getClickId() {
-          try {
-            var params = new URLSearchParams(window.location.search);
-            for (var i = 0; i < PARAM_CANDIDATES.length; i++) {
-              var v = params.get(PARAM_CANDIDATES[i]);
-              if (v) return v;
-            }
-          } catch (e) {}
-          return '';
-        }
-
-        var clickId = getClickId();
-        var offerUrl = clickId
-          ? CLICK_ENDPOINT + '?clickid=' + encodeURIComponent(clickId)
-          : CLICK_ENDPOINT; // fall back to bare /click (RedTrack lander cookie can still match)
-
-        window.__RT_OFFER_URL = offerUrl;
-
-        // Set the CTA href now (and again on DOM ready, in case script order changes).
-        function applyHref() {
-          var cta = document.getElementById('ctaBtn');
-          if (cta) cta.setAttribute('href', window.__RT_OFFER_URL);
-        }
-        if (document.readyState !== 'loading') applyHref();
-        else document.addEventListener('DOMContentLoaded', applyHref);
-      })();
+      /* The click-id passthrough that used to live here has been removed.
+         RedTrack's /click endpoint mints its own LP Click ID and ignores any
+         id appended manually, so the passthrough was a no-op. track.js in
+         <head> now handles the ID, and the CTA points at a bare /click. */
 
       // Step 1 -> Step 2: after the engagement question, show the age check.
       function handleContinue() {
