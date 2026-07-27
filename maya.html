@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta name="turbo-visit-control" content="reload" />
+    <title>Exclusive Content</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- ============================================================
+         RedTrack Lander Tracking Script (OPTIONAL — account-specific)
+         ------------------------------------------------------------
+         If you have the exact snippet from RedTrack > Tools > Landers,
+         paste it here (uncommented). It auto-rewrites CTA links pointing
+         at the tracking domain and appends the click id for you.
+         If you leave this out, the passthrough script at the bottom of
+         the page handles the click id manually (works standalone).
+         <script src="https://cdn.....js"></script>
+         ============================================================ -->
+
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #1a0a14 0%, #2b0f22 50%, #3d1030 100%);
+        color: #111;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+      }
+
+      .container {
+        max-width: 420px;
+        width: 100%;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 32px 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        animation: slideUp 0.4s ease-out;
+      }
+
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .hidden { display: none !important; }
+
+      /* Creator identity */
+      .avatar {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        margin: 0 auto 16px;
+        background: linear-gradient(135deg, #ff5fa2, #b81d6f);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 40px;
+        font-weight: 900;
+        border: 4px solid #fff;
+        box-shadow: 0 6px 18px rgba(184, 29, 111, 0.35);
+        object-fit: cover;
+        overflow: hidden;
+      }
+      .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+      .creator-name {
+        font-size: 22px;
+        font-weight: 800;
+        color: #1f2937;
+        text-align: center;
+        margin-bottom: 2px;
+      }
+      .creator-handle {
+        font-size: 14px;
+        color: #b81d6f;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* PAGE 1 - AGE GATE / QUALIFIER */
+      .qualifier-page { text-align: center; }
+
+      .badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #ff5fa2, #b81d6f);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .qualifier-intro { font-size: 14px; color: #6b7280; margin-bottom: 12px; font-weight: 600; }
+      .qualifier-headline { font-size: 26px; font-weight: 800; line-height: 1.3; margin-bottom: 12px; color: #1f2937; }
+      .qualifier-subtext { font-size: 14px; color: #6b7280; margin-bottom: 28px; line-height: 1.5; }
+
+      .location-options { display: flex; flex-direction: column; gap: 14px; margin-bottom: 8px; }
+
+      .location-btn {
+        padding: 20px;
+        border: 3px solid #e5e7eb;
+        border-radius: 16px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: center;
+        font-size: 17px;
+        font-weight: 700;
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-family: inherit;
+      }
+      .location-btn:hover { border-color: #b81d6f; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(184, 29, 111, 0.2); }
+      .location-icon { font-size: 26px; }
+
+      /* PAGE 2 - MAIN LANDER */
+      .main-lander { text-align: center; }
+
+      .headline {
+        font-size: 28px;
+        font-weight: 800;
+        line-height: 1.25;
+        margin-bottom: 20px;
+        color: #1f2937;
+      }
+      .headline .accent { color: #b81d6f; }
+
+      .trust-badges {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: 16px;
+        background: #FBF3F8;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        color: #6b7280;
+      }
+      .trust-item { display: flex; align-items: center; gap: 6px; }
+      .checkmark { color: #10B981; font-weight: 700; font-size: 16px; }
+
+      .steps-simple {
+        text-align: left;
+        margin-bottom: 24px;
+        padding: 16px;
+        background: #FBF3F8;
+        border-radius: 12px;
+        border-left: 4px solid #b81d6f;
+      }
+      .steps-simple div { font-size: 14px; color: #1f2937; margin-bottom: 8px; line-height: 1.6; }
+      .steps-simple div:last-child { margin-bottom: 0; }
+      .steps-simple strong { color: #b81d6f; font-weight: 700; }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #ff5fa2, #b81d6f);
+        color: #fff;
+        padding: 18px;
+        font-size: 17px;
+        font-weight: 700;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(184, 29, 111, 0.4);
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        font-family: inherit;
+        text-decoration: none;
+        display: block;
+      }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184, 29, 111, 0.5); }
+      .btn-primary:active { transform: translateY(0); }
+
+      .disclaimer { font-size: 11px; color: #9ca3af; text-align: center; margin-top: 16px; line-height: 1.5; }
+
+      footer { margin-top: 24px; padding: 16px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.6); }
+      footer a { color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 8px; }
+      footer a:hover { color: white; }
+
+      @media (max-width: 480px) {
+        .container { padding: 28px 20px; }
+        .headline { font-size: 25px; }
+        .qualifier-headline { font-size: 23px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Creator identity — replace the initial with a VERIFIED adult photo:
+           <div class="avatar"><img src="maya.jpg" alt="Maya" /></div> -->
+      <div class="avatar" id="avatar">M</div>
+      <div class="creator-name">Maya</div>
+      <div class="creator-handle">@mayathaii</div>
+
+      <!-- PAGE 1: AGE GATE -->
+      <div id="qualifierPage" class="qualifier-page">
+        <div class="badge">🔞 Age Verification</div>
+        <p class="qualifier-intro">Before you continue</p>
+        <h1 class="qualifier-headline">Are you 18 or older?</h1>
+        <p class="qualifier-subtext">This content is intended for adults only. Please confirm your age to continue.</p>
+        <div class="location-options">
+          <button class="location-btn" onclick="handleAge(true)">
+            <span class="location-icon">✅</span>
+            <span>Yes, I'm 18 or older</span>
+          </button>
+          <button class="location-btn" onclick="handleAge(false)">
+            <span class="location-icon">🚫</span>
+            <span>No, I'm under 18</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PAGE 2: MAIN LANDER -->
+      <div id="mainLander" class="main-lander hidden">
+        <div class="badge">✨ Verified</div>
+        <h1 class="headline">You're in! See <span class="accent">Maya's</span> exclusive content</h1>
+
+        <div class="trust-badges">
+          <div class="trust-item"><span class="checkmark">✓</span><span>18+ Verified</span></div>
+          <div class="trust-item"><span class="checkmark">✓</span><span>Secure</span></div>
+          <div class="trust-item"><span class="checkmark">✓</span><span>Instant Access</span></div>
+        </div>
+
+        <div class="steps-simple">
+          <div><strong>1.</strong> Tap the button below</div>
+          <div><strong>2.</strong> Create your free Fanvue account</div>
+          <div><strong>3.</strong> Get instant access to exclusive posts</div>
+        </div>
+
+        <!-- CTA: RedTrack click endpoint. The passthrough script below sets the
+             final href to https://idnrf.ttrk.io/click?clickid=<id> so the click id
+             flows through /click -> offer (www.fanvue.com/mayathaii?fvc_id={clickid}). -->
+        <a class="btn-primary" id="ctaBtn" href="https://idnrf.ttrk.io/click" rel="nofollow noopener">
+          Continue to Fanvue →
+        </a>
+
+        <p class="disclaimer">
+          18+ only. You are leaving this page to view content on Fanvue.com.
+          Not affiliated with Facebook or Meta.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <a href="#" onclick="return false;">Privacy</a> |
+      <a href="#" onclick="return false;">Terms</a> |
+      <a href="#" onclick="return false;">18+</a>
+      <br><br>
+      © 2026 All rights reserved.
+    </footer>
+
+    <script>
+      /* =========================================================================
+         RedTrack click-id passthrough (standalone — no external tracker needed)
+         -------------------------------------------------------------------------
+         RedTrack appends the click id to this lander's URL when a campaign uses a
+         landing page. Default param is "clickid"; we also check common alternates
+         so it works regardless of how the campaign is configured. We read it once
+         and build the CTA href as:
+             https://idnrf.ttrk.io/click?clickid=<id>
+         RedTrack's /click endpoint resolves that to the offer with {clickid}
+         filled: https://www.fanvue.com/mayathaii?fvc_id=<id>
+         ========================================================================= */
+      (function () {
+        var CLICK_ENDPOINT = 'https://idnrf.ttrk.io/click';
+        var PARAM_CANDIDATES = ['clickid', 'rtkclickid', 'rtkclickid-store', '_rtkclickid', 'cid'];
+
+        function getClickId() {
+          try {
+            var params = new URLSearchParams(window.location.search);
+            for (var i = 0; i < PARAM_CANDIDATES.length; i++) {
+              var v = params.get(PARAM_CANDIDATES[i]);
+              if (v) return v;
+            }
+          } catch (e) {}
+          return '';
+        }
+
+        var clickId = getClickId();
+        var offerUrl = clickId
+          ? CLICK_ENDPOINT + '?clickid=' + encodeURIComponent(clickId)
+          : CLICK_ENDPOINT; // fall back to bare /click (RedTrack lander cookie can still match)
+
+        window.__RT_OFFER_URL = offerUrl;
+
+        // Set the CTA href now (and again on DOM ready, in case script order changes).
+        function applyHref() {
+          var cta = document.getElementById('ctaBtn');
+          if (cta) cta.setAttribute('href', window.__RT_OFFER_URL);
+        }
+        if (document.readyState !== 'loading') applyHref();
+        else document.addEventListener('DOMContentLoaded', applyHref);
+      })();
+
+      // Age gate: reveal stage 2 only for confirmed adults.
+      function handleAge(isAdult) {
+        if (!isAdult) {
+          document.body.innerHTML =
+            '<div class="container" style="text-align:center;">' +
+            '<div class="creator-name">Sorry</div>' +
+            '<p class="qualifier-subtext" style="margin-top:12px;">You must be 18 or older to view this content.</p>' +
+            '</div>';
+          return;
+        }
+        document.getElementById('qualifierPage').classList.add('hidden');
+        document.getElementById('mainLander').classList.remove('hidden');
+        window.scrollTo(0, 0);
+      }
+    </script>
+  </body>
+</html>
