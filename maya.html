@@ -368,7 +368,10 @@
          ========================================================================= */
       (function () {
         var CLICK_ENDPOINT = 'https://idnrf.ttrk.io/click';
-        var PARAM_CANDIDATES = ['clickid', 'rtkclickid', 'rtkclickid-store', '_rtkclickid', 'cid'];
+        // 'rtkcid' first — that is what RedTrack actually appends when it
+        // redirects to this lander (verified in a HAR of a live test click).
+        // The rest stay as fallbacks in case the campaign is reconfigured.
+        var PARAM_CANDIDATES = ['rtkcid', 'clickid', 'rtkclickid', 'rtkclickid-store', '_rtkclickid', 'cid'];
 
         function getClickId() {
           try {
