@@ -279,27 +279,10 @@
       <div class="creator-handle">@mayathaii</div>
       <div class="online-status"><span class="online-pip" aria-hidden="true"></span>Online now</div>
 
-      <!-- STEP 1: ENGAGEMENT QUESTION (no age question here) -->
-      <div id="qualifierPage" class="qualifier-page">
-        <div class="badge">💬 Say hi</div>
-        <p class="qualifier-intro">Quick question</p>
-        <h1 class="qualifier-headline">Do you want to connect with Maya?</h1>
-        <div class="location-options">
-          <button class="location-btn" onclick="handleContinue()">
-            <span class="location-icon">😍</span>
-            <span>Yes, let's connect</span>
-          </button>
-          <button class="location-btn" onclick="handleContinue()">
-            <span class="location-icon">👀</span>
-            <span>Just looking around</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 2: AGE CONFIRM (shown after Continue) -->
-      <div id="ageGate" class="qualifier-page hidden">
+      <!-- STEP 1: AGE CONFIRM (first screen) -->
+      <div id="ageGate" class="qualifier-page">
         <div class="badge">🔞 One quick thing</div>
-        <p class="qualifier-intro">Before you continue</p>
+        <p class="qualifier-intro">Before you say hi</p>
         <h1 class="qualifier-headline">Are you 18 or older?</h1>
         <p class="qualifier-subtext">This page is intended for adults only.</p>
         <div class="location-options">
@@ -314,7 +297,7 @@
         </div>
       </div>
 
-      <!-- STEP 3: CTA -->
+      <!-- STEP 2: CTA -->
       <div id="mainLander" class="main-lander hidden">
         <div class="badge">✨ You're all set</div>
         <h1 class="headline">Continue to <span class="accent">Maya's</span> page</h1>
@@ -359,14 +342,7 @@
          id appended manually, so the passthrough was a no-op. track.js in
          <head> now handles the ID, and the CTA points at a bare /click. */
 
-      // Step 1 -> Step 2: after the engagement question, show the age check.
-      function handleContinue() {
-        document.getElementById('qualifierPage').classList.add('hidden');
-        document.getElementById('ageGate').classList.remove('hidden');
-        window.scrollTo(0, 0);
-      }
-
-      // Step 2 -> Step 3: reveal the CTA only for confirmed adults.
+      // Step 1 -> Step 2: reveal the CTA only for confirmed adults.
       function handleAge(isAdult) {
         if (!isAdult) {
           document.body.innerHTML =
