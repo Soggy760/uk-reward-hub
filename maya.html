@@ -262,27 +262,9 @@
       <div class="creator-handle">@mayamaiii</div>
       <div class="online-status"><span class="online-pip" aria-hidden="true"></span>Online now</div>
 
-      <!-- STEP 1: AGE CONFIRM (first screen) -->
-      <div id="ageGate" class="qualifier-page">
-        <div class="badge">🔞 One quick thing</div>
-        <p class="qualifier-intro">Before you say hi</p>
-        <h1 class="qualifier-headline">Are you 18 or older?</h1>
-        <p class="qualifier-subtext">This page is intended for adults only.</p>
-        <div class="location-options">
-          <button class="location-btn" onclick="handleAge(true)">
-            <span class="location-icon">✅</span>
-            <span>Yes, I'm 18 or older</span>
-          </button>
-          <button class="location-btn" onclick="handleAge(false)">
-            <span class="location-icon">🚫</span>
-            <span>No, I'm under 18</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 2: CTA -->
-      <div id="mainLander" class="main-lander hidden">
-        <div class="badge">✨ You're all set</div>
+      <!-- CTA (single screen — no interstitial) -->
+      <div id="mainLander" class="main-lander">
+        <div class="badge">✨ 30 days free</div>
         <h1 class="headline">Continue to <span class="accent">Maya's</span> page</h1>
 
         <div class="trust-badges">
@@ -323,22 +305,10 @@
       /* The click-id passthrough that used to live here has been removed.
          RedTrack's /click endpoint mints its own LP Click ID and ignores any
          id appended manually, so the passthrough was a no-op. track.js in
-         <head> now handles the ID, and the CTA points at a bare /click. */
+         <head> now handles the ID, and the CTA points at a bare /click.
 
-      // Step 1 -> Step 2: reveal the CTA only for confirmed adults.
-      function handleAge(isAdult) {
-        if (!isAdult) {
-          document.body.innerHTML =
-            '<div class="container" style="text-align:center;">' +
-            '<div class="creator-name">Sorry</div>' +
-            '<p class="qualifier-subtext" style="margin-top:12px;">You must be 18 or older to continue.</p>' +
-            '</div>';
-          return;
-        }
-        document.getElementById('ageGate').classList.add('hidden');
-        document.getElementById('mainLander').classList.remove('hidden');
-        window.scrollTo(0, 0);
-      }
+         The age interstitial has also been removed — the page is now a single
+         screen straight to the CTA. The 18+ line stays in the disclaimer. */
     </script>
   </body>
 </html>
