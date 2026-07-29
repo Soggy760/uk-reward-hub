@@ -262,8 +262,25 @@
       <div class="creator-handle">@mayamaiii</div>
       <div class="online-status"><span class="online-pip" aria-hidden="true"></span>Online now</div>
 
-      <!-- CTA (single screen — no interstitial) -->
-      <div id="mainLander" class="main-lander">
+      <!-- STEP 1: ENGAGEMENT QUESTION (micro-commitment, no age check) -->
+      <div id="qualifierPage" class="qualifier-page">
+        <div class="badge">💬 Say hi</div>
+        <p class="qualifier-intro">Quick question</p>
+        <h1 class="qualifier-headline">Do you want to chat with Maya?</h1>
+        <div class="location-options">
+          <button class="location-btn" onclick="handleContinue()">
+            <span class="location-icon">😍</span>
+            <span>Yes, let's chat</span>
+          </button>
+          <button class="location-btn" onclick="handleContinue()">
+            <span class="location-icon">👀</span>
+            <span>Just looking</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: CTA -->
+      <div id="mainLander" class="main-lander hidden">
         <div class="badge">✨ 30 days free</div>
         <h1 class="headline">Continue to <span class="accent">Maya's</span> page</h1>
 
@@ -307,8 +324,16 @@
          id appended manually, so the passthrough was a no-op. track.js in
          <head> now handles the ID, and the CTA points at a bare /click.
 
-         The age interstitial has also been removed — the page is now a single
-         screen straight to the CTA. The 18+ line stays in the disclaimer. */
+         The age interstitial is gone; the first screen is now an engagement
+         question instead. Both answers continue — it exists for the
+         micro-commitment, not to qualify anyone out. */
+
+      // Step 1 -> Step 2: reveal the CTA.
+      function handleContinue() {
+        document.getElementById('qualifierPage').classList.add('hidden');
+        document.getElementById('mainLander').classList.remove('hidden');
+        window.scrollTo(0, 0);
+      }
     </script>
   </body>
 </html>
