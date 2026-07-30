@@ -132,8 +132,29 @@
         50%      { opacity: 0.35; }
       }
 
+      /* IP-derived proximity line. Hidden until geo resolves — if the
+         lookup fails the page reads exactly as it did before. The negative
+         top margin tightens it against .online-status when it does show;
+         while display:none those margins collapse away. */
+      .geo-line {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #b81d6f;
+        margin: -12px 0 20px;
+        animation: geoFade 0.35s ease-out;
+      }
+      .geo-line.show { display: flex; }
+      @keyframes geoFade {
+        from { opacity: 0; transform: translateY(-4px); }
+        to   { opacity: 1; transform: none; }
+      }
+
       @media (prefers-reduced-motion: reduce) {
-        .online-dot, .online-pip { animation: none; }
+        .online-dot, .online-pip, .geo-line { animation: none; }
       }
 
       /* PAGE 1 - AGE GATE / QUALIFIER */
@@ -261,12 +282,14 @@
       <div class="creator-name">Maya</div>
       <div class="creator-handle">@mayamaiii</div>
       <div class="online-status"><span class="online-pip" aria-hidden="true"></span>Online now</div>
+      <div class="geo-line" id="geoLine"><span aria-hidden="true">📍</span><span id="geoText"></span></div>
 
       <!-- STEP 1: ENGAGEMENT QUESTION (micro-commitment, no age check) -->
       <div id="qualifierPage" class="qualifier-page">
         <div class="badge">💬 Say hi</div>
         <p class="qualifier-intro">Quick question</p>
         <h1 class="qualifier-headline">Do you want to chat with Maya?</h1>
+        <p class="qualifier-subtext hidden" id="geoSub"></p>
         <div class="location-options">
           <button class="location-btn" onclick="handleContinue()">
             <span class="location-icon">😍</span>
@@ -334,6 +357,68 @@
         document.getElementById('mainLander').classList.remove('hidden');
         window.scrollTo(0, 0);
       }
+
+      /* ----------------------------------------------------------------
+         IP -> city, for the "near you" proximity line.
+
+         Tried in order, first one that returns a city wins. geojs and
+         ipwho.is are unmetered on the free tier; ipapi.co (what ukgeo.html
+         uses) sits last because it 429s after 1000 lookups/day, which paid
+         traffic burns through fast. All three are keyless HTTPS GETs and
+         read the caller's own IP, so nothing has to be passed in.
+
+         Everything here is best-effort: on failure the line stays hidden
+         and the lander renders exactly as it did before.
+         ---------------------------------------------------------------- */
+      const GEO_PROVIDERS = [
+        { url: 'https://get.geojs.io/v1/ip/geo.json',
+          pick: d => ({ city: d.city, country: d.country_code }) },
+        { url: 'https://ipwho.is/',
+          pick: d => d.success === false ? null : { city: d.city, country: d.country_code } },
+        { url: 'https://ipapi.co/json/',
+          pick: d => d.error ? null : { city: d.city, country: d.country_code } }
+      ];
+
+      async function fetchJson(url, ms) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), ms);
+        try {
+          const resp = await fetch(url, { signal: controller.signal, cache: 'no-store' });
+          if (!resp.ok) throw new Error('HTTP ' + resp.status);
+          return await resp.json();
+        } finally {
+          clearTimeout(timeoutId);
+        }
+      }
+
+      async function detectCity() {
+        for (const provider of GEO_PROVIDERS) {
+          try {
+            const loc = provider.pick(await fetchJson(provider.url, 3000));
+            if (loc && loc.city) return loc;
+          } catch (e) {
+            // Provider down, blocked, rate-limited or timed out — try the next.
+          }
+        }
+        return null;
+      }
+
+      document.addEventListener('DOMContentLoaded', async () => {
+        const loc = await detectCity();
+        if (!loc) return;
+
+        // US/UK read distance in miles; the rest of the world in km.
+        const miles = ['US', 'GB'].indexOf((loc.country || '').toUpperCase()) !== -1;
+        const dist = 2 + Math.floor(Math.random() * 7); // 2-8
+
+        document.getElementById('geoText').textContent =
+          dist + (miles ? ' miles' : ' km') + ' away · ' + loc.city;
+        document.getElementById('geoLine').classList.add('show');
+
+        const sub = document.getElementById('geoSub');
+        sub.textContent = "She's online near " + loc.city + ' right now';
+        sub.classList.remove('hidden');
+      });
     </script>
   </body>
 </html>
