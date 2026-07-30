@@ -289,7 +289,6 @@
         <div class="badge">💬 Say hi</div>
         <p class="qualifier-intro">Quick question</p>
         <h1 class="qualifier-headline">Do you want to chat with Maya?</h1>
-        <p class="qualifier-subtext hidden" id="geoSub"></p>
         <div class="location-options">
           <button class="location-btn" onclick="handleContinue()">
             <span class="location-icon">😍</span>
@@ -306,6 +305,7 @@
       <div id="mainLander" class="main-lander hidden">
         <div class="badge">✨ 30 days free</div>
         <h1 class="headline">Continue to <span class="accent">Maya's</span> page</h1>
+        <p class="qualifier-subtext hidden" id="geoStage2"></p>
 
         <div class="trust-badges">
           <div class="trust-item"><span class="checkmark">✓</span><span>Verified</span></div>
@@ -407,17 +407,13 @@
         const loc = await detectCity();
         if (!loc) return;
 
-        // US/UK read distance in miles; the rest of the world in km.
-        const miles = ['US', 'GB'].indexOf((loc.country || '').toUpperCase()) !== -1;
-        const dist = 2 + Math.floor(Math.random() * 7); // 2-8
-
         document.getElementById('geoText').textContent =
-          dist + (miles ? ' miles' : ' km') + ' away · ' + loc.city;
+          'Near you · ' + loc.city;
         document.getElementById('geoLine').classList.add('show');
 
-        const sub = document.getElementById('geoSub');
-        sub.textContent = "She's online near " + loc.city + ' right now';
-        sub.classList.remove('hidden');
+        const stage2Location = document.getElementById('geoStage2');
+        stage2Location.textContent = 'Maya is near you in ' + loc.city;
+        stage2Location.classList.remove('hidden');
       });
     </script>
   </body>
